@@ -1,4 +1,4 @@
-class TrierTaches extends App {
+export default class TrierTaches extends App {
     constructor(el) {
         super();
         this._el = el;

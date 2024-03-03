@@ -1,4 +1,4 @@
-class App {
+export default class App {
 
     /**
      * Construit, injecte et lance les comportements de chaque nouvelle tâche

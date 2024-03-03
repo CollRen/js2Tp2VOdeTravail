@@ -1,4 +1,4 @@
-class Tache extends App {
+export default class Tache extends App {
     constructor(el) {
         super();
         this._el = el;
@@ -29,7 +29,7 @@ class Tache extends App {
     afficheDetail() {
         let description = aTaches[this._index].description;
 
-        let elDetailDom =  `<div class="detail__info">
+        let elDetailDom =  `<div export default class="detail__info">
                                 <p><small>Tâche : </small>${aTaches[this._index].tache}</p>
                                 <p><small>Description : </small>${description ? description : 'Aucune description disponible.'}</p>
                                 <p><small>Importance : </small>${aTaches[this._index].importance}</p>

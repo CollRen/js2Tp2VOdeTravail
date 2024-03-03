@@ -1,4 +1,4 @@
-class Formulaire extends App {
+export default class Formulaire extends App {
     constructor(el) {
         super();
         this._el = el;
