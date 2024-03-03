@@ -4,6 +4,7 @@ import App from './App.js';
 export default class Formulaire extends App {
     constructor(el) {
         super();
+        console.log(el);
         this._el = el;
         this._elInputTache = this._el.tache;
         this._elInputDescription = this._el.description;

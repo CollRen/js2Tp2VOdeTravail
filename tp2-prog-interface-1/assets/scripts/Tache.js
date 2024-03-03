@@ -2,6 +2,7 @@ import App from './App.js';
 // export default class Tache extends App {
 export default class Tache {
     constructor(el) {
+        console.log(el);
         this._el = el;
         this._index = this._el.dataset.jsTache;
         this._elActions = this._el.querySelector('[data-js-actions]');
@@ -28,6 +29,7 @@ export default class Tache {
      * Affiche le détail d'une tâche
      */
     afficheDetail() {
+        console.log('afficheDetail');
         let description = aTaches[this._index].description;
 
         let elDetailDom =  `<div export default class="detail__info">
@@ -44,6 +46,7 @@ export default class Tache {
      * Supprime la tâche du tableau aTaches et appelle la méthode pour injecter les tâches mises à jour
      */
     supprimeTache() {
+        console.log('supprimeTache');
         aTaches.splice(this._index, 1);
 
         // Réinjecte le tableau de tâches purgé de la tâche supprimée

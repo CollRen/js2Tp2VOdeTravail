@@ -97,6 +97,10 @@
                     </p>
                 </div>
             </template>
+            <div class="to-do-list__actions" data-js-trier-taches>
+                <button data-js-trier="tache">Trier par ordre alphabétique</button>
+                <button data-js-trier="importance">Trier par importance</button>
+            </div>
         </section>
 
 
