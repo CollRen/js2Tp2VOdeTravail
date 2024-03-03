@@ -1,30 +1,29 @@
+import Tache from './Tache.js';
 export default class App {
 
+    constructor() {
+        this._elTemplate = document.querySelector('.template_tache__liste');
+        this._elListe = document.querySelector('.to-do-list');
+    }
     /**
      * Construit, injecte et lance les comportements de chaque nouvelle tâche
      * @param {Int} index 
      */
-    injecteTache(index) {
+    
+    injecteTache(datas) {
 
-        let dom =  `<div data-js-tache=${index}>
-                        <p>
-                            <span>
-                                <small>Tâche : </small>${aTaches[index].tache}
-                            </span>
-                            -
-                            <span>
-                                <small>Importance : </small>${aTaches[index].importance}
-                            </span>
-                            <span data-js-actions>
-                                <button data-js-action="afficher">Afficher le détail</button>
-                                <button data-js-action="supprimer">Supprimer</button>
-                            </span>
-                        </p>
-                    </div>`;
+        
+        let elCloneTemplate = this._elTemplate.cloneNode(true);
 
-        this._elTaches.insertAdjacentHTML('beforeend', dom);
+		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas.index  );
+		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas.tache);
+		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas.importance);
+		let elNouvelleTache = document.importNode(elCloneTemplate.content, true)
+		console.log(elNouvelleTache);
+		this._elListe.append(elNouvelleTache);  // Ajouter un noeud
+
 
         // Lance les comportements de la nouvelle tâche injectée
         new Tache(this._elTaches.lastElementChild);
-    }
+}
 }

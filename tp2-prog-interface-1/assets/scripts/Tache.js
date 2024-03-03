@@ -1,6 +1,7 @@
-export default class Tache extends App {
+import App from './App.js';
+// export default class Tache extends App {
+export default class Tache {
     constructor(el) {
-        super();
         this._el = el;
         this._index = this._el.dataset.jsTache;
         this._elActions = this._el.querySelector('[data-js-actions]');

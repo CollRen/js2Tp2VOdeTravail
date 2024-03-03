@@ -1,3 +1,4 @@
+import App from './App.js';
 export default class TrierTaches extends App {
     constructor(el) {
         super();
