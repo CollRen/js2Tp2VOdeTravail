@@ -78,23 +78,6 @@ export default class Tache {
         });
     }
 
-    /* appelFetch() {
-      appelFetch('requetes/supprimeTache.php', this.oOptions)
-       
-        .then(
-          function (data) {
-            if (data != "Erreur query string") {
-                let datas = JSON.parse(this.oOptions.body);
-                datas.index = data;
-              this.#_el.reset();
-              this.injecteTache(datas);
-            }
-          }.bind(this)
-        )
-        .catch(function (erreur) {
-          console.log(erreur.message);
-        });
-      } */
 }
 
 /* export const { afficheDetail, supprimeTache } =
