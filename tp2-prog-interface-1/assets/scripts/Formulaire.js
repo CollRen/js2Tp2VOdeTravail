@@ -1,5 +1,5 @@
 import App from './App.js';
-
+import { appelFetch } from "./App3.js";
 
 export default class Formulaire extends App {
     constructor(el) {
@@ -80,13 +80,7 @@ export default class Formulaire extends App {
     }
 
     appelFetch() {
-        fetch('requetes/ajouteTache.php', this.oOptions)
-        .then(
-          function (reponse) {
-            if (reponse.ok) return reponse.text();
-            else throw new Error("pas ok");
-          }.bind(this)
-        )
+      appelFetch('requetes/requetesAsync.php', this.oOptions)
         .then(
           function (data) {
             if (data != "Erreur query string") {
