@@ -2,13 +2,15 @@ import { classesMapping } from "./classMapping.js";
 import Formulaire from "./Formulaire.js";
 import Detail from "./Detail.js";
 import TrierTaches from "./TrierTaches.js";
+import Tache from "./Tache.js";
 
 window.addEventListener("DOMContentLoaded", function () {
   let elsFormulaire = document.querySelectorAll("[data-js-formulaire]"),
     elsTrierTaches = document.querySelectorAll("[data-js-trier-taches]"),
     elComponents = document.querySelectorAll("[data-js-component]"),
     elsDetail = document.querySelectorAll("[data-js-detail]");
-    console.log(elComponents);
+    this._elTaches = document.querySelectorAll('[data-js-taches]');
+   
   /**
    * Initialisation du Router
    */
@@ -32,5 +34,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
   for (let i = 0, l = elsDetail.length; i < l; i++) {
     new Detail(elsDetail[i]);
+  }
+
+  for (let i = 0, l = this._elTaches.length; i < l; i++) {
+    new Tache(this._elTaches[i]);
   }
 });

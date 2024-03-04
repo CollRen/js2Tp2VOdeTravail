@@ -4,27 +4,27 @@ require_once('functions.php');
 $request_payload = file_get_contents('php://input');
 $data = json_decode($request_payload, true);
 
-if (isset($data['nom']) && isset($data['quartier']) && $data['action'] == 'ajouteEquipe') {
+if (isset($data['nom']) && isset($data['quartier']) && $data['action'] == 'ajouteTache') {
 
-    //Ajouter équipe
+    //Ajouter tâche
     $nom = htmlspecialchars($data['nom']);
     $quartier = htmlspecialchars($data['quartier']);
 
-    $return_id = ajouteEquipe($nom, $quartier);
+    $return_id = ajouteTache($nom, $quartier);
     echo $return_id;
 } else if (isset($data['nom']) && isset($data['id']) && $data['action'] == 'edit') {
 
-    // Change nom équipe
+    // Change nom tâche
     $nom = htmlspecialchars($data['nom']);
     $id = htmlspecialchars($data['id']);
 
-    changeNomEquipe($nom, $id);
+    changeNomTache($nom, $id);
     echo $nom;
-} elseif (isset($data['id']) && $data['action'] == 'delete') {
+} elseif (isset($data['id']) && $data['action'] == 'supprimer') {
 
-    // Supprime équipe
+    // Supprime tâche
     $id = htmlspecialchars($data['id']);
-    supprimeEquipe($id);
+    supprimeTache($id);
 
     echo $id;
 } else {

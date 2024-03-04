@@ -1,6 +1,5 @@
 export default class Detail {
     constructor(el) {
-        console.log(el);
         this._el = el;
         this._elChevron = this._el.querySelector('[data-js-chevron]');
 

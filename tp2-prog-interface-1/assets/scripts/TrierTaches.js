@@ -2,7 +2,6 @@ import App from './App.js';
 export default class TrierTaches extends App {
     constructor(el) {
         super();
-        console.log(el);
         this._el = el;
         this._elTaches = document.querySelector('[data-js-taches]');
 

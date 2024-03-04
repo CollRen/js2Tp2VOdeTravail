@@ -4,14 +4,11 @@ import App from './App.js';
 export default class Formulaire extends App {
     constructor(el) {
         super();
-        console.log(el);
         this._el = el;
         this._elInputTache = this._el.tache;
         this._elInputDescription = this._el.description;
         this._elsInputImportance = this._el.querySelectorAll('input[name="importance"]');
         this._elBouton = this._el.querySelector('[data-js-btn]'); 
-        
-        this._elTaches = document.querySelector('[data-js-taches]');
         this.objTache = {};
         this.oOptions = {
             method: "POST",

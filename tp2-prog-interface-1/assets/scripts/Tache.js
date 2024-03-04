@@ -1,8 +1,44 @@
 import App from './App.js';
+import { appelFetch } from "./App3.js";
 // export default class Tache extends App {
 export default class Tache {
-    constructor() {
+  #_el;
+  #_elBtnAction;
+  #_action;
+  #_elId;
+    constructor(_el) {
 
+      this.#_el = _el;
+      this.#_elBtnAction = this.#_el.querySelector('[data-js-actions]');
+      this.#_action = "";
+      this.#_elId = this.#_el.dataset.jsTaches;
+      this._oOptions = {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+      };
+      this.objTache = {
+        id: this.#_elId,
+    }
+      this.init();
+    }
+
+    init() {
+      this.#action();
+
+    }
+
+    #action() {
+      this.#_elBtnAction.addEventListener(
+        "click",
+        function (e) {
+          this.#_action = this.objTache.action = e.target.dataset.jsAction;
+          e.preventDefault();
+          //if (this.#_elChampNom.value) this.equipe.nom = this.#_elChampNom.value;
+          //this.appelFetch();
+          /* if (this.#_action == "changer") this.#changeNom(); */
+          if (this.#_action == "supprimer") this.#supprimer();
+        }.bind(this)
+      );
     }
 
 
@@ -19,40 +55,38 @@ export default class Tache {
                                 <p><small>Importance : </small>${aTaches[this._index].importance}</p>
                             </div>`;
 
-        this._elTacheDetail.innerHTML = elDetailDom;
+        //this.#_elTacheDetail.innerHTML = elDetailDom;
     }
 
 
-    /**
-     * Supprime la tâche du tableau aTaches et appelle la méthode pour injecter les tâches mises à jour
-     */
-    supprimeTache() {
-        console.log('GO');
-        let id = location.hash;
-        console.log(id);
-        this.objTache = {
-            id: id,
-            action: 'supprimeTache'
-        }
-        this.oOptions.body = JSON.stringify(this.objTache);
-        this.appelFetch();
 
-    }
 
-    appelFetch() {
-        fetch('requetes/supprimeTache.php', this.oOptions)
+    #supprimer() {
+      this._oOptions.body = JSON.stringify(this.objTache);
+  
+      appelFetch("requetes/requetesAsync.php", this._oOptions)
         .then(
-          function (reponse) {
-            if (reponse.ok) return reponse.text();
-            else throw new Error("pas ok");
+          function (data) {
+            //console.log(data)
+            if (data != "Erreur query string") {
+              this.#_el.remove();
+            }
           }.bind(this)
         )
+        .catch(function (erreur) {
+          console.log(erreur.message);
+        });
+    }
+
+    /* appelFetch() {
+      appelFetch('requetes/supprimeTache.php', this.oOptions)
+       
         .then(
           function (data) {
             if (data != "Erreur query string") {
                 let datas = JSON.parse(this.oOptions.body);
                 datas.index = data;
-              this._el.reset();
+              this.#_el.reset();
               this.injecteTache(datas);
             }
           }.bind(this)
@@ -60,8 +94,8 @@ export default class Tache {
         .catch(function (erreur) {
           console.log(erreur.message);
         });
-      }
+      } */
 }
 
-export const { afficheDetail, supprimeTache } =
-  new Tache();
+/* export const { afficheDetail, supprimeTache } =
+  new Tache(); */
