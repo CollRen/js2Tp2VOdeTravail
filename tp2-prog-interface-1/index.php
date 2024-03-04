@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr_CA">
-
 <head>
     <!-- meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>TP2 | Simon C-B</title>
-    <meta name="description" content="TP2 du cours 582-21F-MA Programmation d'interface Web 1">
+	<title>TP2 | Simon C-B</title>
+	<meta name="description" content="TP2 du cours 582-21F-MA Programmation d'interface Web 1">
 
-    <!-- styles -->
-    <link rel="stylesheet" type="text/css" href="./assets/styles/styles.css">
+	<!-- styles -->
+	<link rel="stylesheet" type="text/css" href="./assets/styles/styles.css">
 
-    <!-- scripts un seul appel avec main.js avec le defer -->
-    <script type="module" src="./assets/scripts/main.js" defer></script>
+	<!-- scripts un seul appel avec main.js avec le defer -->
+	<script type="module" src="./assets/scripts/main.js" defer></script> 
 </head>
 
-<body data-js-component="Router">
-    <header>
-        <h1><a href="#!">TP2</a></h1>
+<body>
+	<header>
+		<h1>TP2</h1>
         <p>Un gestionnaire de tâches (to-do-list) en POO.</p>
         <hr>
-    </header>
-    <main>
+	</header>
+	<main>
 
         <!-- Section ajout d'une tâche -->
         <section>
@@ -56,12 +55,12 @@
 
         <!-- Section liste des tâches -->
         <section class="to-do-list"> <!-- PHP, possiblement avec -->
-            <h3>Liste des tâches</h3>
+            <h3>Liste des tâches</h3> 
             <?php
-            require_once('./requetes/functions.php');
-            $taches = getAllTaches();
+			require_once('./requetes/functions.php');
+			$taches = getAllTaches();
 
-            while ($tache = mysqli_fetch_assoc($taches)) {
+			while ($tache = mysqli_fetch_assoc($taches)) {
                 echo '
                     <div data-js-taches="' . $tache['id'] . '">
                         <p>
@@ -79,8 +78,8 @@
                         </p>
                     </div>
                 ';
-            }
-            ?>
+			}
+		?>
             <template class="template_tache__liste">
                 <div data-js-taches="{{ index }}">
                     <p>
@@ -112,7 +111,7 @@
             <div class="chevron chevron--top" data-js-chevron></div>
 
             <div class="detail__tache" data-js-tache-detail>
-
+            
                 <template class="template_tache__detail">
                     <div class="detail__info">
                         <p><small>Tâche : </small>{{ id }}</p>
@@ -123,5 +122,4 @@
             </div>
         </section>
 </body>
-
 </html>
