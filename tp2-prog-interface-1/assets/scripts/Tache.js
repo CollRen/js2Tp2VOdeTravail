@@ -1,27 +1,8 @@
 import App from './App.js';
 // export default class Tache extends App {
 export default class Tache {
-    constructor(el) {
-        console.log(el);
-        this._el = el;
-        this._index = this._el.dataset.jsTache;
-        this._elActions = this._el.querySelector('[data-js-actions]');
-        
-        this._elTaches = this._el.closest('[data-js-taches]');
-        this._elTacheDetail = document.querySelector('[data-js-tache-detail]');
+    constructor() {
 
-        this.init();
-    }
-
-
-    /**
-     * Initialise les comportements
-     */
-    init() {
-        this._elActions.addEventListener('click', function(e) {
-            if (e.target.dataset.jsAction == 'afficher') this.afficheDetail();
-            else if (e.target.dataset.jsAction == 'supprimer') this.supprimeTache();
-        }.bind(this));
     }
 
 
@@ -46,13 +27,41 @@ export default class Tache {
      * Supprime la tâche du tableau aTaches et appelle la méthode pour injecter les tâches mises à jour
      */
     supprimeTache() {
-        console.log('supprimeTache');
-        aTaches.splice(this._index, 1);
-
-        // Réinjecte le tableau de tâches purgé de la tâche supprimée
-        this._elTaches.innerHTML = '';
-        for (let i = 0, l = aTaches.length; i < l; i++) {
-            this.injecteTache(i);
+        console.log('GO');
+        let id = location.hash;
+        console.log(id);
+        this.objTache = {
+            id: id,
+            action: 'supprimeTache'
         }
+        this.oOptions.body = JSON.stringify(this.objTache);
+        this.appelFetch();
+
     }
+
+    appelFetch() {
+        fetch('requetes/supprimeTache.php', this.oOptions)
+        .then(
+          function (reponse) {
+            if (reponse.ok) return reponse.text();
+            else throw new Error("pas ok");
+          }.bind(this)
+        )
+        .then(
+          function (data) {
+            if (data != "Erreur query string") {
+                let datas = JSON.parse(this.oOptions.body);
+                datas.index = data;
+              this._el.reset();
+              this.injecteTache(datas);
+            }
+          }.bind(this)
+        )
+        .catch(function (erreur) {
+          console.log(erreur.message);
+        });
+      }
 }
+
+export const { afficheDetail, supprimeTache } =
+  new Tache();

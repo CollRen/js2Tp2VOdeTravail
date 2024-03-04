@@ -1,28 +1,30 @@
-
-import { afficheDetail } from "./Tache.js";
+import { accueil } from "./Accueil.js";
+import { afficheDetail, supprimeTache } from "./Tache.js";
 
 export default class Router {
   constructor() {
-    this.options = document.querySelectorAll("[data-js-action]");
 
     this._routes = [
       ["", accueil],
-      ["/tache/:id", afficheDetail],
+      ["/afficher/:id", afficheDetail],
     ];
 
     this.init();
   }
 
   init() {
+    this.options = document.querySelectorAll("[data-js-taches]");
+
     this.options.forEach(
       function (e) {
         e.addEventListener(
           "click",
           function (onClick) {
-            let hash = `#!/${onClick.currentTarget.dataset.jsHashbang}`;
+            let action = onClick.target.dataset.jsAction,
+            id = onClick.currentTarget.dataset.jsTaches;
+            let hash = `#!/${action}/${id}`;
             window.location = hash;
 
-            if (hash == "#!/taches") this.elEcouteurTache();
           }.bind(this)
         );
       }.bind(this)
@@ -31,13 +33,14 @@ export default class Router {
     window.addEventListener(
       "hashchange",
       function () {
-        this.gereHashbang();
+        this.gereHashbang()
       }.bind(this)
     );
   }
 
   // gestion du fragment d'url suite au #! pour faire appeler le comportement de la route correspondent
   gereHashbang() {
+
     let hash = location.hash.slice(2);
 
     let isRoute = false;
@@ -61,7 +64,7 @@ export default class Router {
         if (hashInArray[1]) {
           if (isId) {
             let id = hashInArray[1].slice(1);
-            this._routes[i][1](id); //onde 1 é o método chamado (láááá em cima em this._routes, depois da vírgula)
+            this._routes[i][1](id);
             isRoute = true;
             return id;
           }
@@ -75,3 +78,4 @@ export default class Router {
     }
   }
 }
+

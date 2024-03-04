@@ -9,7 +9,7 @@ if (isset($data['id'])) {
 
     $id = htmlspecialchars($data['id']);
 
-    supprimeEquipe($id);
+    supprimeTache($id);
 
     echo $id;
 } else {

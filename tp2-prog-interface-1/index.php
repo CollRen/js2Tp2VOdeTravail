@@ -15,9 +15,9 @@
 	<script type="module" src="./assets/scripts/main.js" defer></script> 
 </head>
 
-<body>
+<body data-js-component="Router">
 	<header>
-		<h1>TP2</h1>
+		<h1>TP2 version originale</h1>
         <p>Un gestionnaire de tâches (to-do-list) en POO.</p>
         <hr>
 	</header>

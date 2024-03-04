@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", function () {
     elsTrierTaches = document.querySelectorAll("[data-js-trier-taches]"),
     elComponents = document.querySelectorAll("[data-js-component]"),
     elsDetail = document.querySelectorAll("[data-js-detail]");
-
+    console.log(elComponents);
   /**
    * Initialisation du Router
    */
