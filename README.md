@@ -16,3 +16,9 @@
         - location()
         - gere hashbang
         etc.
+
+
+
+### Fonctions à corriger
+- afficheDetail()
+- supprimeTache()
