@@ -3,7 +3,7 @@ export default class App {
 
     constructor() {
         this._elTemplate = document.querySelector('.template_tache__liste');
-        this._elListe = document.querySelector('.to-do-list');
+        this._elListe = document.querySelector('.to-do-list__taches');
     }
     /**
      * Construit, injecte et lance les comportements de chaque nouvelle tâche
