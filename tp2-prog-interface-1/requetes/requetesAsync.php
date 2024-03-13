@@ -36,7 +36,18 @@ if (isset($data['tache']) && isset($data['description']) && isset($data['importa
         supprimeTache($id);
     
         echo $id;
-    } else {
+    } elseif (isset($data['id']) && $data['action'] == 'getTacheDetail') {
+
+        // Supprime tâche
+    
+            $id = htmlspecialchars($data['id']);
+        
+            supprimeTache($id);
+        
+            echo $id;
+        } 
+    
+    
+    else {
         echo 'Erreur query string';
     }
-
