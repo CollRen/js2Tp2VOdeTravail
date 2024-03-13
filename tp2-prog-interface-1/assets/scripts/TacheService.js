@@ -1,10 +1,11 @@
+import App from "./App.js";
 class TacheService {
-  #_elTemplateTache;
-  #_elDetails;
+  _elTemplateTache;
+  _elDetails;
   constructor() {
-    this.#_elTemplateTache = document.querySelector(".template_tache__detail");
-    console.log(this.#_elTemplateTache);
-    this.#_elDetails = document.querySelector("[data-js-tache-detail]");
+    this._elTemplateTache = document.querySelector("[data-template-details]");
+    this._elDetails = document.querySelector("[data-js-tache-detail]");
+    this.getTachesDetail = this.getTachesDetail.bind(this);
   }
 
   /**
@@ -20,10 +21,11 @@ class TacheService {
     let oOptions = {
       method: "POST",
       headers: {
-        "Content-Type": " application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     };
+    console.log(oOptions);
     fetch("requetes/requetesAsync.php", oOptions)
       .then(function (reponse) {
         if (reponse.ok) return reponse.json();
@@ -31,42 +33,14 @@ class TacheService {
       })
       .then(
         function (data) {
-          //console.log(data);
+          console.log(data);
+          if (data && data != "Erreur query string") {
 
-          if (data && data != 'Erreur query string') {
-              //this.#afficheListeTaches(data);
+          //this.injecteDetail(data);
           } else {
-              //console.log('Erreur query string');
+            console.log('Erreur query string');
           }
 
-          if (data.length > 0) {
-            //this.#_elDetails.innerHTML = "";
-            //let elUl = document.createElement("ul");
-
-            console.log(data); debugger;
-            for (let i = 0; i < data.length; i++) {
-              //console.log(data[i]);
-              let elCloneTemplate = this.#_elTemplateTache.cloneNode(true);
-
-              for (let cle in data[i]) {
-                let regExp = new RegExp("{{" + cle + "}}", "g");
-                elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
-                  regExp,
-                  data[i][cle]
-                );
-              }
-
-              let elContent = document.importNode(
-                elCloneTemplate.content,
-                true
-              );
-              elUl.append(elContent);
-            }
-            this.#_elDetails.append(elUl);
-          } else {
-            this.#_elDetails.innerHTML =
-              "<p> pas de taches dans cette équipe </p>";
-          }
         }.bind(this)
       )
       .catch(function (erreur) {
@@ -74,6 +48,27 @@ class TacheService {
           `Il y a eu un problème avec l'opération fetch: ${erreur.message}`
         );
       });
+  }
+  injecteDetail(datas) {
+    console.log(datas);
+
+    let elCloneTemplate = this._elTemplate.cloneNode(true);
+
+
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
+      "{{ description }}",
+      datas.description
+    );
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
+      "{{ importance }}",
+      datas.importance
+    );
+    let elNouvelleTache = document.importNode(elCloneTemplate.content, true);
+    console.log(elNouvelleTache);
+    this._elListe.append(elNouvelleTache); // Ajouter un noeud
+
+    // Lance les comportements de la nouvelle tâche injectée
+    new Tache(this._elListe.lastElementChild);
   }
 }
 export const { getTachesDetail } = new TacheService();

@@ -26,4 +26,5 @@ export default class App {
         // Lance les comportements de la nouvelle tâche injectée
         new Tache(this._elListe.lastElementChild);
 }
+
 }

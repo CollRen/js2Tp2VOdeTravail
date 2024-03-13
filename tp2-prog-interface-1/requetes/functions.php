@@ -52,6 +52,8 @@ function executeRequete($requete, $insert = false)
 function getAllTaches()
 {
 	return executeRequete("SELECT * FROM taches");
+
+
 }
 
 
@@ -100,5 +102,5 @@ function getTacheDetail($id_tache)
 	global $connexion;
 	$id_tache = mysqli_real_escape_string($connexion, $id_tache);
 
-	return executeRequete("SELECT 'description' FROM taches WHERE id = " . $id_tache);
+	return executeRequete("SELECT * FROM taches WHERE id = " . $id_tache);
 }

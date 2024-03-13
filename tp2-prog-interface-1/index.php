@@ -117,7 +117,7 @@
 
             <div class="detail__tache" data-js-tache-detail>
 
-                <template class="template_tache__detail">
+                <template data-template-details>
                     <div class="detail__info">
                         <p><small>Tâche : </small>{{ id }}</p>
                         <p><small>Description : </small>{{ description }}</p>

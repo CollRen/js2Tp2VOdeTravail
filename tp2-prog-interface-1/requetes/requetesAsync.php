@@ -8,12 +8,12 @@ if (isset($data['tache']) && isset($data['description']) && isset($data['importa
 
     //Ajouter tâche
     if (isset($data['tache']) && isset($data['description']) && isset($data['importance'])) {
-    
-    
+
+
         $tache = htmlspecialchars($data['tache']);
         $description = htmlspecialchars($data['description']);
         $importance = htmlspecialchars($data['importance']);
-    
+
         $return_id = ajouteTache($tache, $description, $importance);
         echo $return_id;
     } else {
@@ -31,23 +31,24 @@ if (isset($data['tache']) && isset($data['description']) && isset($data['importa
 
     // Supprime tâche
 
-        $id = htmlspecialchars($data['id']);
-    
-        supprimeTache($id);
-    
-        echo $id;
-    } elseif (isset($data['id']) && $data['action'] == 'getTacheDetail') {
+    $id = htmlspecialchars($data['id']);
 
-        // Va chercher toutes l'informations d'un tache
-    
-            $id = htmlspecialchars($data['id']);
-        
-            getTacheDetail($id);
-        
-            echo $id;
-        } 
-    
-    
-    else {
-        echo 'Erreur query string';
+    supprimeTache($id);
+
+    echo $id;
+} elseif (isset($data['id']) && $data['action'] == 'getTacheDetail') {
+
+    // Va chercher toutes l'informations d'un tache
+
+    $id = htmlspecialchars($data['id']);
+    $data_reponse = array();
+    $detailsTache = getTacheDetail($id);
+    // Récupérer la ligne suivante d'un ensemble de résultats sous forme de tableau associatif
+    while ($detailTache = mysqli_fetch_assoc($detailsTache)) {
+        $data_reponse[] = $detailTache;
     }
+    echo json_encode($data_reponse);
+
+} else {
+    echo 'Erreur query string';
+}
