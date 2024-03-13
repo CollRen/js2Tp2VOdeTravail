@@ -3,7 +3,7 @@ export default class TrierTaches extends App {
   constructor(el) {
     super();
     this._el = el;  // action
-    this._elTaches = document.querySelector("[data-js-taches]");
+    this._elTaches = document.querySelector(".to-do-list__taches");
     this._elTemplate = document.querySelector("[template_tache__liste]");
     this.init();
   }
@@ -22,15 +22,14 @@ export default class TrierTaches extends App {
   }
 
   /**
-   * Réordonne le tableau aTaches et appelle la méthode pour injecter les tâches mises à jour
+   * Réordonne le objTachesSorted aTaches et appelle la méthode pour injecter les tâches mises à jour
    * @param {String} propriete
    */
-  trieTaches(tableau) {
-    // Réinjecte les tâches dans l'ordre
+  trieTaches(objTachesSorted) {
+    //console.log(objTachesSorted);
+
     this._elTaches.innerHTML = "";
-for (let i = 0, l = tableau.length; i < l; i++) {
-      this.injecteTache(i);
-    }
+    this.injecteTache(objTachesSorted);
   }
 
   appelFetch(propriete) {
@@ -38,7 +37,7 @@ for (let i = 0, l = tableau.length; i < l; i++) {
     action: "getTachesTriees",
     sort: propriete,
 };
-console.log(data);
+// console.log(data);
   let oOptions = {
     method: "POST",
     headers: {
@@ -53,7 +52,7 @@ console.log(data);
     })
     .then(
       function (data) {
-        console.log(data);
+        // console.log(data);
         if (data && data != "Erreur query string") {
           
           this.trieTaches(data);
