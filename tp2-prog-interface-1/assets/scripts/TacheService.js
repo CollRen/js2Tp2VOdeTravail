@@ -13,7 +13,6 @@ class TacheService {
    * @param {String} id
    */
   getTachesDetail(id) {
-    //console.log(id);
     let data = {
       action: "getTacheDetail",
       id: id,
@@ -32,8 +31,10 @@ class TacheService {
       })
       .then(
         function (data) {
+          console.log(data);
           // console.log(data);
           if (data && data != "Erreur query string") {
+            
             this.injecteDetail(data);
           } else {
             console.log("Erreur query string");
@@ -41,13 +42,16 @@ class TacheService {
         }.bind(this)
       )
       .catch(function (erreur) {
+
         console.log(
           `Il y a eu un problème avec l'opération fetch: ${erreur.message}`
         );
       });
   }
   injecteDetail(datas) {
+    console.log(datas);
     this._elDetails.innerHTML = '';
+    if(datas.length == 0) this._elDetails.innerHTML = 'Aucune description disponible';
     let elCloneTemplate = this._elTemplate.cloneNode(true);
 
     elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
