@@ -7,7 +7,6 @@ export default class Tache {
   #_action;
   #_elId;
     constructor(_el) {
-
       this.#_el = _el;
       this.#_elBtnAction = this.#_el.querySelector('[data-js-actions]');
       this.#_action = "";
@@ -31,6 +30,7 @@ export default class Tache {
       this.#_elBtnAction.addEventListener(
         "click",
         function (e) {
+          console.log(e);
           this.#_action = this.objTache.action = e.target.dataset.jsAction;
           e.preventDefault();
           //if (this.#_elChampNom.value) this.equipe.nom = this.#_elChampNom.value;
