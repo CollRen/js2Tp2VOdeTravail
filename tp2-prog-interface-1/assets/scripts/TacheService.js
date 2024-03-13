@@ -3,7 +3,7 @@ class TacheService {
   _elTemplateTache;
   _elDetails;
   constructor() {
-    this._elTemplateTache = document.querySelector("[data-template-details]");
+    this._elTemplate = document.querySelector("[data-template-details]");
     this._elDetails = document.querySelector("[data-js-tache-detail]");
     this.getTachesDetail = this.getTachesDetail.bind(this);
   }
@@ -25,7 +25,6 @@ class TacheService {
       },
       body: JSON.stringify(data),
     };
-    console.log(oOptions);
     fetch("requetes/requetesAsync.php", oOptions)
       .then(function (reponse) {
         if (reponse.ok) return reponse.json();
@@ -33,14 +32,12 @@ class TacheService {
       })
       .then(
         function (data) {
-          console.log(data);
+          // console.log(data);
           if (data && data != "Erreur query string") {
-
-          //this.injecteDetail(data);
+            this.injecteDetail(data);
           } else {
-            console.log('Erreur query string');
+            console.log("Erreur query string");
           }
-
         }.bind(this)
       )
       .catch(function (erreur) {
@@ -50,25 +47,25 @@ class TacheService {
       });
   }
   injecteDetail(datas) {
-    console.log(datas);
-
+    this._elDetails.innerHTML = '';
     let elCloneTemplate = this._elTemplate.cloneNode(true);
 
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
+      "{{ id }}",
+      datas[0].id
+    );
 
     elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
       "{{ description }}",
-      datas.description
+      datas[0].description
     );
     elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace(
       "{{ importance }}",
-      datas.importance
+      datas[0].importance
     );
-    let elNouvelleTache = document.importNode(elCloneTemplate.content, true);
-    console.log(elNouvelleTache);
-    this._elListe.append(elNouvelleTache); // Ajouter un noeud
+    let elAffichageDetail = document.importNode(elCloneTemplate.content, true);
 
-    // Lance les comportements de la nouvelle tâche injectée
-    new Tache(this._elListe.lastElementChild);
+    this._elDetails.append(elAffichageDetail); // Ajouter un noeud
   }
 }
 export const { getTachesDetail } = new TacheService();
