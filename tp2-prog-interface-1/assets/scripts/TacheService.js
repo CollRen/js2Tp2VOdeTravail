@@ -66,6 +66,7 @@ class TacheService {
     let elAffichageDetail = document.importNode(elCloneTemplate.content, true);
 
     this._elDetails.append(elAffichageDetail); // Ajouter un noeud
+    this._elDetails.scrollIntoView({ behavior: "smooth"});
   }
 }
 export const { getTachesDetail } = new TacheService();
