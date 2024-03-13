@@ -53,7 +53,6 @@
             </form>
         </section>
 
-
         <!-- Section liste des tâches -->
         <section class="to-do-list"> <!-- PHP, possiblement avec -->
             <div class="to-do-list__taches">
@@ -61,6 +60,7 @@
                 <h3>Liste des tâches</h3>
                 <?php
                 require_once('./requetes/functions.php');
+                $sort = 'importance';
                 $taches = getAllTaches();
 
                 while ($tache = mysqli_fetch_assoc($taches)) {

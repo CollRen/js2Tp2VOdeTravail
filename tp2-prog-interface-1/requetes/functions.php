@@ -47,18 +47,23 @@ function executeRequete($requete, $insert = false)
 
 
 /**
- * Retourne la liste des équipes
+ * Retourne la liste des tâches
  */
 function getAllTaches()
 {
 	return executeRequete("SELECT * FROM taches");
-
-
 }
 
+/**
+ * Retourne la liste des tâches trié ASC
+ */
+function getAllTachesSort($sort)
+{
+	return executeRequete("SELECT * FROM taches ORDER BY $sort");
+}
 
 /**
- * Ajoute la nouvelle équipe
+ * Ajoute la nouvelle tâche
  */
 function ajouteTache($tache, $description, $importance)
 {
@@ -84,7 +89,7 @@ function changeNomTache($nom_tache, $id_tache)
 
 
 /**
- * Supprime l'équipe spécifiée en paramètre
+ * Supprime l'tâche spécifiée en paramètre
  */
 function supprimeTache($id_tache)
 {

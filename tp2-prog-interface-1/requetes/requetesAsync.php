@@ -49,6 +49,19 @@ if (isset($data['tache']) && isset($data['description']) && isset($data['importa
     }
     echo json_encode($data_reponse);
 
+} elseif (isset($data['sort']) && $data['action'] == 'getTachesTriees') {
+
+    // Va chercher toutes l'informations d'un tache
+
+    $sort = htmlspecialchars($data['sort']);
+    $data_reponse = array();
+    $tachesTriees = getAllTachesSort($sort);
+    // Récupérer la ligne suivante d'un ensemble de résultats sous forme de tableau associatif
+    while ($tacheTriee = mysqli_fetch_assoc($tachesTriees)) {
+        $data_reponse[] = $tacheTriee;
+    }
+    echo json_encode($data_reponse);
+
 } else {
     echo 'Erreur query string';
 }

@@ -11,10 +11,9 @@ export default class App {
      */
     
     injecteTache(datas) {
-        console.log(datas);
-        
-        let elCloneTemplate = this._elTemplate.cloneNode(true);
 
+        let elCloneTemplate = this._elTemplate.cloneNode(true);
+        
 		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas.index  );
 		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas.tache);
 		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas.importance);
