@@ -12,9 +12,10 @@ class TacheService {
    * @param {String} id
    */
   getTachesDetail(id) {
+    //console.log(id);
     let data = {
       action: "getTacheDetail",
-      idTache: id,
+      id: id,
     };
     let oOptions = {
       method: "POST",
@@ -32,11 +33,11 @@ class TacheService {
         function (data) {
           //console.log(data);
 
-          // if (data && data != 'Erreur query string') {
-          //     this.#afficheListeTaches(data);
-          // } else {
-          //     //console.log('Erreur query string');
-          // }
+          if (data && data != 'Erreur query string') {
+              //this.#afficheListeTaches(data);
+          } else {
+              //console.log('Erreur query string');
+          }
 
           if (data.length > 0) {
             //this.#_elDetails.innerHTML = "";

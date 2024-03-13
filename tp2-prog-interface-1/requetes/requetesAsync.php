@@ -38,11 +38,11 @@ if (isset($data['tache']) && isset($data['description']) && isset($data['importa
         echo $id;
     } elseif (isset($data['id']) && $data['action'] == 'getTacheDetail') {
 
-        // Supprime tâche
+        // Va chercher toutes l'informations d'un tache
     
             $id = htmlspecialchars($data['id']);
         
-            supprimeTache($id);
+            getTacheDetail($id);
         
             echo $id;
         } 

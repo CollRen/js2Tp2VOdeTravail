@@ -67,7 +67,7 @@ function ajouteTache($tache, $description, $importance)
 
 
 /**
- * Change le nom de l'équipe spécifiée en paramètre
+ * Change le nom d'une tâhce spécifiée en paramètre
  */
 function changeNomTache($nom_tache, $id_tache)
 {
@@ -90,4 +90,15 @@ function supprimeTache($id_tache)
 	$id_tache = mysqli_real_escape_string($connexion, $id_tache);
 
 	return executeRequete("DELETE FROM taches WHERE id = " . $id_tache);
+}
+
+/**
+ * Change le nom d'une tâhce spécifiée en paramètre
+ */
+function getTacheDetail($id_tache)
+{
+	global $connexion;
+	$id_tache = mysqli_real_escape_string($connexion, $id_tache);
+
+	return executeRequete("SELECT 'description' FROM taches WHERE id = " . $id_tache);
 }
