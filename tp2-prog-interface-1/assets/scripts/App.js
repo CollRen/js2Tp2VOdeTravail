@@ -35,11 +35,11 @@ injecteTache(datas) {
     this._elTemplate = document.querySelector('.template_tache__liste');
 
     
-        
+        console.log(datas);
     
     let elCloneTemplate = this._elTemplate.cloneNode(true);
     
-    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas.id  );
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas.index  );
     elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas.tache);
     elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas.importance);
     let elNouvelleTache = document.importNode(elCloneTemplate.content, true)

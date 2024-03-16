@@ -8,6 +8,7 @@ export default class Tache {
   #_elId;
     constructor(_el) {
       this.#_el = _el;
+      console.log(this.#_el);
       this.#_elBtnAction = this.#_el.querySelector('[data-js-actions]');
       this.#_action = "";
       this.#_elId = this.#_el.dataset.jsTaches;
