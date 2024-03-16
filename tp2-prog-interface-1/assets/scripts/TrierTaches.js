@@ -29,7 +29,7 @@ export default class TrierTaches extends App {
     //console.log(objTachesSorted);
 
     this._elTaches.innerHTML = "";
-    this.injecteTache(objTachesSorted);
+    this.injecteTaches(objTachesSorted);
   }
 
   appelFetch(propriete) {

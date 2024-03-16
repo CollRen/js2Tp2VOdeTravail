@@ -10,7 +10,7 @@ export default class App {
      * @param {Int} index 
     */
    
-   injecteTache(datas) {
+   injecteTaches(datas) {
         this._elTemplate = document.querySelector('.template_tache__liste');
 
         for (let index = 0; index < datas.length; index++) {
@@ -30,6 +30,27 @@ export default class App {
         new Tache(this._elListe.lastElementChild);
 }
     new Router;
+}
+injecteTache(datas) {
+    this._elTemplate = document.querySelector('.template_tache__liste');
+
+    
+        
+    
+    let elCloneTemplate = this._elTemplate.cloneNode(true);
+    
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas.id  );
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas.tache);
+    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas.importance);
+    let elNouvelleTache = document.importNode(elCloneTemplate.content, true)
+    // console.log(elNouvelleTache);
+    this._elListe.append(elNouvelleTache);  // Ajouter un noeud
+
+
+    // Lance les comportements de la nouvelle tâche injectée
+    new Tache(this._elListe.lastElementChild);
+
+new Router;
 }
 
 }
