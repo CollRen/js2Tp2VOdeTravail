@@ -13,6 +13,7 @@ export default class Router {
   }
 
   init() {
+    this.gereHashbang();
     this.options = document.querySelectorAll("[data-js-taches]");
 
     this.options.forEach(
