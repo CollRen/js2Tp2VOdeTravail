@@ -22,7 +22,6 @@ export default class App {
             datas = data;
         }
 
-        console.log(datas);
         for (i = 0; i < datas.length; i++) {
             
         

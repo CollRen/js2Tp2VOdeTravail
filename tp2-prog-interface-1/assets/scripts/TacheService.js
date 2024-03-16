@@ -48,8 +48,12 @@ class TacheService {
         );
       });
   }
+
+  /**
+   * 
+   * @param {tableau} datas 
+   */
   injecteDetail(datas) {
-    console.log(datas);
     this._elDetails.innerHTML = '';
     if(datas.length == 0) this._elDetails.innerHTML = 'Aucune description disponible';
     let elCloneTemplate = this._elTemplate.cloneNode(true);

@@ -18,7 +18,6 @@ export default class Router {
 
     this.options.forEach(
       function (e) {
-        console.log(e);
         e.addEventListener(
           "click",
           function (onClick) {
