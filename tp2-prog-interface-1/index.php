@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>TP2 | Simon C-B</title>
+    <title>TP2 | RdM</title>
     <meta name="description" content="TP2 du cours 582-21F-MA Programmation d'interface Web 1">
 
     <!-- styles -->
