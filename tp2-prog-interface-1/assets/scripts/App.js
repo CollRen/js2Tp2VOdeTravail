@@ -7,22 +7,31 @@ export default class App {
     }
     /**
      * Construit, injecte et lance les comportements de chaque nouvelle tâche
-     * @param {Int} index 
+     * @param {Int} i 
     */
    
    injecteTaches(datas) {
         this._elTemplate = document.querySelector('.template_tache__liste');
 
-        for (let index = 0; index < datas.length; index++) {
+        let i = 0
+        if(datas[0]){
+
+        } else {
+            let data = [];
+            data[0] = datas;
+            datas = data;
+        }
+
+        console.log(datas);
+        for (i = 0; i < datas.length; i++) {
             
         
         let elCloneTemplate = this._elTemplate.cloneNode(true);
         
-		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas[index].id  );
-		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas[index].tache);
-		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas[index].importance);
+		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas[i].id);
+		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas[i].tache);
+		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas[i].importance);
 		let elNouvelleTache = document.importNode(elCloneTemplate.content, true)
-		// console.log(elNouvelleTache);
 		this._elListe.append(elNouvelleTache);  // Ajouter un noeud
 
 
@@ -31,26 +40,4 @@ export default class App {
 }
     new Router;
 }
-injecteTache(datas) {
-    this._elTemplate = document.querySelector('.template_tache__liste');
-
-    
-        console.log(datas);
-    
-    let elCloneTemplate = this._elTemplate.cloneNode(true);
-    
-    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas.index  );
-    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas.tache);
-    elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas.importance);
-    let elNouvelleTache = document.importNode(elCloneTemplate.content, true)
-    // console.log(elNouvelleTache);
-    this._elListe.append(elNouvelleTache);  // Ajouter un noeud
-
-
-    // Lance les comportements de la nouvelle tâche injectée
-    new Tache(this._elListe.lastElementChild);
-
-new Router;
-}
-
 }

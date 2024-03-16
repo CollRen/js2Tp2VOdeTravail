@@ -26,7 +26,6 @@ export default class TrierTaches extends App {
    * @param {String} propriete
    */
   trieTaches(objTachesSorted) {
-    //console.log(objTachesSorted);
 
     this._elTaches.innerHTML = "";
     this.injecteTaches(objTachesSorted);
@@ -37,7 +36,7 @@ export default class TrierTaches extends App {
     action: "getTachesTriees",
     sort: propriete,
 };
-// console.log(data);
+
   let oOptions = {
     method: "POST",
     headers: {
@@ -52,7 +51,6 @@ export default class TrierTaches extends App {
     })
     .then(
       function (data) {
-        // console.log(data);
         if (data && data != "Erreur query string") {
           
           this.trieTaches(data);

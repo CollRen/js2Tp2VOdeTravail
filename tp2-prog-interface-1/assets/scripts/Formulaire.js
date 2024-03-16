@@ -85,9 +85,9 @@ export default class Formulaire extends App {
           function (data) {
             if (data != "Erreur query string") {
                 let datas = JSON.parse(this.oOptions.body);
-                datas.index = data;
+                datas.id = data;
               this._el.reset();
-              this.injecteTache(datas);
+              this.injecteTaches(datas);
             }
           }.bind(this)
         )

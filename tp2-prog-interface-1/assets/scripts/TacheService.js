@@ -32,8 +32,7 @@ class TacheService {
       })
       .then(
         function (data) {
-          console.log(data);
-          // console.log(data);
+
           if (data && data != "Erreur query string") {
             
             this.injecteDetail(data);
